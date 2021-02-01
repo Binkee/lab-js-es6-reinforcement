@@ -1,39 +1,45 @@
 // ***************************************************************************
 // Iteration 1 - `for...of` loop
 // ***************************************************************************
-
 const getFirstNames = arr => {
   const userFirstNames = [];
   for (let user of arr) {
-    // Your code goes here ...
+    userFirstNames.push(user.firstName)
   }
+  return userFirstNames
 };
-
 getFirstNames(usersArray);
 // expected output:
 // [ 'Kirby', 'Tracie', 'Kendra', 'Kinney', 'Howard', 'Rachelle', 'Lizzie' ]
-
 // ***************************************************************************
 // Iteration 2 - `for...of` loop and ES6 string literals `${}`
 // ***************************************************************************
-
 const getFullNames = arr => {
-  // Your code goes here ...
+  let fullNames = []
+    for (let user of arr) {
+      let fullName = `${user.firstName} ${user.lastName}`
+      fullNames.push(fullName)
+    }
+    return fullNames
 };
-
 getFullNames(usersArray);
 // expected output:
 // [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
 //   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
-
 // ***************************************************************************
 // Iteration 3 - ES6 destructuring , for of loop, object literal
 // ***************************************************************************
-
 const getUsersCreditDetails = arr => {
-  // Your code goes here ...
+  let usersCreditDetails = []
+  for (let user of arr) {
+    let { firstName, lastName, balance } = user
+    const userDetails = {
+      firstName, lastName, balance
+    }
+    usersCreditDetails.push(userDetails)
+  }
+  return usersCreditDetails
 };
-
 getUsersCreditDetails(usersArray);
 // expected output:
 // [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
@@ -43,13 +49,22 @@ getUsersCreditDetails(usersArray);
 // { firstName: 'Howard', lastName: 'Gilmore', balance: '$21,307.75' },
 // { firstName: 'Rachelle', lastName: 'Schneider', balance: '$35,121.49' },
 // { firstName: 'Lizzie', lastName: 'Alford', balance: '$4,382.94' } ]
-
 // ***************************************************************************
 // Iteration 4 - practice `.filter()` method and how to return two elements
 // ***************************************************************************
-
 const genderView = users => {
-  // Your code goes here ...
+  let obj = {}
+  obj.femaleUsers = users.filter(item => {
+    if(item.gender == 'female') {
+      return `${item.firstName} ${item.lastName}`
+    }
+})
+  obj.maleUsers = users.filter(item => {
+  if(item.gender == 'male') {
+    return `${item.firstName} ${item.lastName}`
+  }
+})
+    return obj
 };
 
 genderView(usersArray);
